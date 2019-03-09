@@ -1,8 +1,22 @@
 {
-        "name": "greeter-bot",
-        "version": "1.0.0",
-        "description": "Bot created for RayCh1lls Discord Server",
-        "main": "chillbot.js",
-        "author": "Lee Cooper",
-        "dependencies": {}
+  "name": "greeter-bot",
+  "version": "1.0.0",
+  "description": "Bot created for RayCh1lls Discord Server",
+  "main": "index.js",
+  "author": "Lee Cooper",
+  "dependencies": {
+    "discord.js": "^11.4.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lee-cooper/chillbot.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lee-cooper/chillbot/issues"
+  },
+  "homepage": "https://github.com/lee-cooper/chillbot#readme"
 }
