@@ -1,0 +1,13 @@
+{
+        "name": "greeter-bot",
+        "version": "1.0.0",
+        "description": "Bot created for RayCh1lls Discord Server",
+        "main": "chillbot.js",
+        "author": "Lee Cooper",
+        "dependencies": {
+                "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+                "opusscript": "0.0.6",
+                "winston": "^3.2.1",
+                "ytdl-core": "^0.29.1"
+        }
+}
