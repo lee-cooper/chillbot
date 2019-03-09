@@ -1,11 +1,13 @@
-const Discord = require('discord.js');
+const Discord = require('discord.js-commando');
 const auth = require('./auth.json');
 const bot = new Discord.Client();
 
-bot.login(auth.token);
+bot.registry.registerGroup('simple', 'Simple');
+bot.registry.registerDefaults();
+bot.registry.registerCommandsIn(__dirname + '/commands');
 
 bot.on('message', function(message){
-    if(message.content.toLowerCase() == 'Hello'){
+    if(message.content.toLowerCase() == 'hello'){
         message.reply('Hello, how are you?');
     }
 });
@@ -13,3 +15,5 @@ bot.on('message', function(message){
 bot.on('ready', function(){
     console.log('ready');
 });
+
+bot.login(auth.token);
