@@ -1,20 +1,20 @@
 const Discord = require('discord.js-commando');
 const YTDL = require('ytdl-core');
 
-function Play(connection, message){
+// function Play(connection, message){
     
-    let server = servers[message.guild.id];
-    server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}));
-    server.queue.shift();
-    server.dispatcher.on('end', function(){
-        if(server.queue[0]){
-            Play(connection, message);
-        }
-        else{
-            connection.disconnect();
-        }
-    });
-}
+//     let server = servers[message.guild.id];
+//     server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}));
+//     server.queue.shift();
+//     server.dispatcher.on('end', function(){
+//         if(server.queue[0]){
+//             Play(connection, message);
+//         }
+//         else{
+//             connection.disconnect();
+//         }
+//     });
+// }
 
 class JoinChannelCommand extends Discord.Command{
     constructor(client){
@@ -30,19 +30,8 @@ class JoinChannelCommand extends Discord.Command{
         if(message.member.voiceChannel){
 
             if(!message.guild.voiceConnection){
-
-                if(!servers[message.guild.id]){
-                    servers[message.guild.id] = {
-                        queue: []
-                    };
-                }
                 
-                message.member.voiceChannel.join()
-                    .then(connection =>{
-                        let server = servers[message.guild.id];
-                        server.queue.push(args);
-                        Play(connection, message);
-                    });
+                message.member.voiceChannel.join();
             } 
         }
         else{
