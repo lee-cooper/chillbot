@@ -1,13 +1,25 @@
 const Discord = require('discord.js-commando');
 const YTDL = require('ytdl-core');
 
-function Play(connection, message){
+function Play(connection, message, args){
     
+    if(!servers[message.guild.id]){
+        servers[message.guild.id] = {
+            queue: []
+        };
+    }
+
     let server = servers[message.guild.id];
-    server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}));
-    server.queue.shift();
+    server.queue.push(args);
+    server.dispatcher = connection.playStream(YTDL(server.queue[0], {
+        filter: "audioonly", 
+        quality: "lowestaudio"
+    }));
+
     server.dispatcher.on('end', function(){
+        
         if(server.queue[0]){
+            server.queue.shift();
             Play(connection, message);
         }
         else{
@@ -31,16 +43,7 @@ class PlaySongCommand extends Discord.Command{
 
             if(message.guild.voiceConnection){
 
-                if(!servers[message.guild.id]){
-                    servers[message.guild.id] = {
-                        queue: []
-                    };
-                }
-
-                let server = servers[message.guild.id];
-                server.queue.push(args);
-
-                Play(message.guild.voiceConnection, message);
+                Play(message.guild.voiceConnection, message, args);
             } 
         }
         else{

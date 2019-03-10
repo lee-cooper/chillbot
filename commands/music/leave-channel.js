@@ -10,7 +10,7 @@ class LeaveChannelCommand extends Discord.Command{
         });
     }
 
-    async run(message, args){
+    async run(message){
         
         if(message.guild.voiceConnection){
             message.guild.voiceConnection.disconnect();
