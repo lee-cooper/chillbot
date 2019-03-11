@@ -1,4 +1,5 @@
 const Discord = require('discord.js-commando');
+const Servers = require('./admin.js');
 
 class PauseSongCommand extends Discord.Command{
     constructor(client){
@@ -12,7 +13,7 @@ class PauseSongCommand extends Discord.Command{
 
     async run(message){
 
-        let server = servers[message.guild.id];
+        let server = Servers[message.guild.id];
         server.dispatcher.paused = true;
     }
 }
