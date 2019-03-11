@@ -56,9 +56,6 @@ function play(connection, message, args){
             
             play(connection, message, null);
         }
-        else{
-            connection.disconnect();
-        }
     });
 }
 
