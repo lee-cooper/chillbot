@@ -14,12 +14,6 @@ class PlaySongCommand extends Discord.Command{
 
     async run(message, args){
 
-        if(!Servers[message.guild.id]){
-            Servers[message.guild.id] = {
-                queue: []
-            };
-        }
-
         if(!message.member.voiceConnection){
 
             if(message.guild.voiceConnection){
@@ -34,6 +28,12 @@ class PlaySongCommand extends Discord.Command{
 }
 
 function play(connection, message, args){
+
+    if(!Servers[message.guild.id]){
+        Servers[message.guild.id] = {
+            queue: []
+        };
+    }
 
     let server = Servers[message.guild.id];
 
