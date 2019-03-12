@@ -45,7 +45,8 @@ function play(connection, message, args){
 
     server.dispatcher = connection.playStream(YTDL(server.queue[0], {
         filter: "audioonly", 
-        quality: "lowestaudio"
+        quality: "lowestaudio",
+        volume: 0.5
     }));
 
     server.queue.shift();
