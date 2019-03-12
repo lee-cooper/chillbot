@@ -13,6 +13,12 @@ class AddSongCommand extends Discord.Command{
 
     async run(message, args){
 
+        if(!Servers[message.guild.id]){
+            Servers[message.guild.id] = {
+                queue: []
+            };
+        }
+
         let server = Servers[message.guild.id];
         
         server.queue.push(args);
