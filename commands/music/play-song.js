@@ -40,24 +40,42 @@ function play(connection, message, args){
 
     let server = Servers[message.guild.id];
 
-    if(args != null){
+    if(args != null && args != undefined && args != ''){
         server.queue.push(args);
+        message.reply('Song added to queue');
     }
 
-    server.dispatcher = connection.playStream(YTDL(server.queue[0], {
-        filter: "audioonly", 
-        quality: "lowestaudio"
-    }));
+    if(!server.dispatcher && args != ''){
+        server.dispatcher = connection.playStream(YTDL(server.queue[0], {
+            filter: "audioonly", 
+            quality: "lowestaudio"
+        }));
 
-    server.queue.shift();
-
-    server.dispatcher.on('end', function(){
+        server.dispatcher.setVolume(0.5);
+    
+        server.queue.shift();
+    
+        server.dispatcher.on('end', function(){
+    
+            server.dispatcher = null;
+            if(server.queue[0]){
+                
+                play(connection, message, null);
+            }
+        });
+    }
+    else if(server.dispatcher && args == ''){
+        message.reply('Chill maaaaan, the music is already on');
+    }
+    else if(server.dispatcher && args == '' && server.queue[0]){
+        message.reply('There are no songs in the queue');
+    }
+    else if(server.dispatcher && args != ''){
         
-        if(server.queue[0]){
-            
-            play(connection, message, null);
-        }
-    });
+    }
+    else{
+        message.reply('Icicle tits, you were not supposed to see this');
+    }
 }
 
 module.exports = PlaySongCommand;

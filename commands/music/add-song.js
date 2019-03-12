@@ -13,15 +13,32 @@ class AddSongCommand extends Discord.Command{
 
     async run(message, args){
 
-        if(!Servers[message.guild.id]){
-            Servers[message.guild.id] = {
-                queue: []
-            };
-        }
+        if(message.member.voiceChannel){
 
-        let server = Servers[message.guild.id];
+            if(message.guild.voiceConnection){
+
+                if(!Servers[message.guild.id]){
+                    Servers[message.guild.id] = {
+                        queue: []
+                    };
+                }
         
-        server.queue.push(args);
+                let server = Servers[message.guild.id];
+                
+                if(args != null && args != undefined && args != ''){
+                    server.queue.push(args);
+                }
+                else{
+                    message.reply('Cannot add song, no URL was provided');
+                }
+            } 
+            else {
+                message.reply('You must be in a voice with a bot to add songs!');
+            }
+        }
+        else{
+            message.reply('You must be in a voice with a bot to add songs!');
+        }
     }
 }
 
