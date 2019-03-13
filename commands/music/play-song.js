@@ -68,7 +68,7 @@ function play(connection, message, args){
         message.reply('Chill maaaaan, the music is already on');
     }
     else if(server.dispatcher && args == '' && server.queue[0]){
-        message.reply('Brrr! Theres no ice cubes in the music queue!');
+        message.reply('Brrr! There\'s no ice cubes in the music queue!');
     }
     else if(server.dispatcher && args != ''){
         

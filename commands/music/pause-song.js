@@ -16,10 +16,10 @@ class PauseSongCommand extends Discord.Command{
         let server = Servers[message.guild.id];
 
         if(!server){
-            message.reply('The music hasnt started yet, frostbite.')
+            message.reply('The music hasn\'t started yet, frostbite.')
         }
         else if(!server.dispatcher){
-            message.reply('Brrr! Theres no music playing, icicle.')
+            message.reply('Brrr! There\'s no music playing, icicle.')
         }
         else if(server.dispatcher){
             server.dispatcher.paused = true;

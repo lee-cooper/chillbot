@@ -16,7 +16,7 @@ class LeaveChannelCommand extends Discord.Command{
             message.guild.voiceConnection.disconnect();
         }
         else{
-            message.reply('I must be in a voice channel in order to be removed from a voice channel');
+            message.reply('You can\'t remove the snowman from the igloo if he was never in there!');
         }
     }
 }

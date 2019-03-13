@@ -33,11 +33,11 @@ class AddSongCommand extends Discord.Command{
                 }
             } 
             else {
-                message.reply('You must be in a voice with a bot to add songs!');
+                message.reply('You must be in an igloo with me to add songs!');
             }
         }
         else{
-            message.reply('You must be in a voice with a bot to add songs!');
+            message.reply('You must be in an igloo with me to add songs!');
         }
     }
 }
