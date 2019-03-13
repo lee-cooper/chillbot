@@ -74,7 +74,7 @@ function play(connection, message, args){
         
     }
     else{
-        message.reply('Icicle tits, you were not supposed to see this');
+        message.reply('I\'m just a snowman, maaan. I don\'t know what just happened.');
     }
 }
 

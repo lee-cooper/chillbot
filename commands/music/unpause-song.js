@@ -19,7 +19,7 @@ class UnpauseSongCommand extends Discord.Command{
             message.reply('The music hasn\'t started yet, snowflake.')
         }
         else if(!server.dispatcher){
-            message.reply('Brrr! There\'s no music playing, icicle.')
+            message.reply('Brrr! There\'s no music playing, snowboots.')
         }
         else if(server.dispatcher){
             server.dispatcher.paused = false;
