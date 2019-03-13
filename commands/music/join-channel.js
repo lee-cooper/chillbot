@@ -17,6 +17,9 @@ class JoinChannelCommand extends Discord.Command{
                 
                 message.member.voiceChannel.join();
             } 
+            else{
+                message.reply('Im already here, popsicle');
+            }
         }
         else{
 

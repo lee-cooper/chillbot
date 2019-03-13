@@ -15,7 +15,13 @@ class SkipSongCommand extends Discord.Command{
 
         let server = Servers[message.guild.id];
         
-        if(server.dispatcher){
+        if(!server){
+            message.reply('The music hasnt started yet, carrot.')
+        }
+        else if(!server.dispatcher){
+            message.reply('Brrr! Theres no music playing, icicle.')
+        }
+        else if(server.dispatcher){
             server.dispatcher.end();
         }
     }
