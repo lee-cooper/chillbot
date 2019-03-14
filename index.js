@@ -1,5 +1,4 @@
 const Discord = require('discord.js-commando');
-const auth = require('./auth.json');
 const bot = new Discord.Client();
 
 require('http').createServer().listen(3000);
@@ -13,4 +12,4 @@ bot.on('ready', function(){
     console.log('ready');
 });
 
-bot.login(auth.token);
+bot.login(process.env.token);
