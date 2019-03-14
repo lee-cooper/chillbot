@@ -10,10 +10,18 @@ class DiceRollCommand extends Discord.Command{
         });
     }
 
-    async run(message, args){
-        let diceRoll = Math.floor(Math.random() * (6) + 1);
+    async run(message, sides){
 
-        message.reply('You rolled a ' + diceRoll);
+        var diceValue = sides.split('D')[1];
+
+        if(!isNaN(diceValue)){
+
+            let diceRoll = Math.floor(Math.random() * diceValue) + 1;
+            message.reply('With a ' + sides + ' dice, I rolled a ' + diceRoll);
+        }
+        else{
+            message.reply('What kind of dice do I roll, snowball?');
+        }
     }
 }
 
