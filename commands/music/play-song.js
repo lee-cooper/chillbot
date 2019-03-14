@@ -73,9 +73,9 @@ function play(connection, message, args){
     else if(server.dispatcher && args != ''){
         
     }
-    else{
-        message.reply('I\'m just a snowman, maaan. I don\'t know what just happened.');
-    }
+    // else{
+    //     message.reply('I\'m just a snowman, maaan. I don\'t know what just happened.');
+    // }
 }
 
 module.exports = PlaySongCommand;
