@@ -1,9 +1,8 @@
 const Discord = require('discord.js-commando');
+const auth = require('./auth.json');
 const bot = new Discord.Client();
 
 require('http').createServer().listen(3000);
-
-global.servers = {};
 
 bot.registry.registerGroup('simple', 'Simple');
 bot.registry.registerGroup('music', 'Music');
@@ -14,4 +13,4 @@ bot.on('ready', function(){
     console.log('ready');
 });
 
-bot.login(process.env.TOKEN);
+bot.login(auth.token);
