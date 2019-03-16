@@ -1,32 +1,47 @@
 const Discord = require('discord.js-commando');
 const Servers = require('./admin.js');
 const YTDL = require('ytdl-core');
+const YTSearch = require('yt-search');
 
-class PlaySongCommand extends Discord.Command{
+class SearchCommand extends Discord.Command{
     constructor(client){
         super(client, {
-            name: 'play',
+            name: 'search',
             group: 'music',
-            memberName: 'play',
-            description: 'Plays the provided song'
+            memberName: 'search',
+            description: 'Searches for a song to play'
         });
     }
 
     async run(message, args){
 
-        if(message.member.voiceChannel){
+        console.log(args);
 
-            if(message.guild.voiceConnection){
+        YTSearch(args, function(err, r){
+            if ( err ) throw err;
 
-                play(message.guild.voiceConnection, message, args);
-            } 
-            else {
-                message.reply('I must be in a voice channel to play songs!');
+            
+    
+            let video = r.videos[0];
+    
+            console.log(video);
+    
+            if(message.member.voiceChannel){
+
+                if(message.guild.voiceConnection){
+    
+                    play(message.guild.voiceConnection, message, video.url);
+                } 
+                else {
+                    message.reply('I must be in a voice channel to play songs!');
+                }
             }
-        }
-        else{
-            message.reply('You must be in a voice channel to play songs!');
-        }
+            else{
+                message.reply('You must be in a voice channel to play songs!');
+            }
+        })
+
+        
     }
 }
 
@@ -78,4 +93,4 @@ function play(connection, message, args){
     // }
 }
 
-module.exports = PlaySongCommand;
+module.exports = SearchCommand;
