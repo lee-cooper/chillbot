@@ -4,7 +4,6 @@ const YTDL = require('ytdl-core');
 module.exports = {
     play: function(connection, message, songArguments){
 
-        console.log('I made it to play');
         if(!Servers[message.guild.id]){
             Servers[message.guild.id] = {
                 queue: []

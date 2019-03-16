@@ -13,9 +13,7 @@ class SearchCommand extends Discord.Command{
     }
 
     async run(message, args){
-
-        console.log(args);
-
+        
         YTSearch(args, function(err, r){
             if ( err ) throw err;
 
