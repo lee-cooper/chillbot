@@ -1,6 +1,6 @@
 const Discord = require('discord.js-commando');
 const YTSearch = require('yt-search');
-const play = require('./play.js');
+const MusicBox = require('./music-box.js');
 
 class SearchCommand extends Discord.Command{
     constructor(client){
@@ -27,7 +27,7 @@ class SearchCommand extends Discord.Command{
 
                 if(message.guild.voiceConnection){
     
-                    play.play(message.guild.voiceConnection, message, video.url);
+                    MusicBox.play(message.guild.voiceConnection, message, video.url);
                 } 
                 else {
                     message.reply('I must be in a voice channel to play songs!');

@@ -2,7 +2,7 @@ const Servers = require('./admin.js');
 const YTDL = require('ytdl-core');
 
 module.exports = {
-    play: function(connection, message, args){
+    play: function(connection, message, songArguments){
 
         if(!Servers[message.guild.id]){
             Servers[message.guild.id] = {
@@ -12,12 +12,12 @@ module.exports = {
     
         let server = Servers[message.guild.id];
     
-        if(args != null && args != undefined && args != ''){
-            server.queue.push(args);
+        if(isNotNullOrEmpty(songArguments)){
+            server.queue.push(songArguments);
             message.reply('Song added to queue');
         }
     
-        if(!server.dispatcher && args != ''){
+        if(!server.dispatcher && isNotNullOrEmpty(songArguments)){
             server.dispatcher = connection.playStream(YTDL(server.queue[0], {
                 filter: "audioonly", 
                 quality: "lowestaudio"
@@ -36,13 +36,13 @@ module.exports = {
                 }
             });
         }
-        else if(server.dispatcher && args == ''){
+        else if(server.dispatcher && songArguments == ''){
             message.reply('Chill maaaaan, the music is already on');
         }
-        else if(server.dispatcher && args == '' && server.queue[0]){
+        else if(server.dispatcher && songArguments == '' && server.queue[0]){
             message.reply('Brrr! There\'s no ice cubes in the music queue!');
         }
-        else if(server.dispatcher && args != ''){
+        else if(server.dispatcher && isNotNullOrEmpty(songArguments)){
             
         }
         // else{
@@ -50,3 +50,7 @@ module.exports = {
         // }
     }
 };
+
+function isNotNullOrEmpty(songArguments){
+    return songArguments != null && songArguments != '';
+}
