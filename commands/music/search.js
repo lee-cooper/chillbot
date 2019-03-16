@@ -21,8 +21,6 @@ class SearchCommand extends Discord.Command{
 
             let video = r.videos[0];
     
-            console.log(video);
-    
             if(message.member.voiceChannel){
 
                 if(message.guild.voiceConnection){

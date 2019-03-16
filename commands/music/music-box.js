@@ -4,12 +4,13 @@ const YTDL = require('ytdl-core');
 module.exports = {
     play: function(connection, message, songArguments){
 
+        console.log('I made it to play');
         if(!Servers[message.guild.id]){
             Servers[message.guild.id] = {
                 queue: []
             };
         }
-    
+
         let server = Servers[message.guild.id];
     
         if(isNotNullOrEmpty(songArguments)){
@@ -17,7 +18,7 @@ module.exports = {
             message.reply('Song added to queue');
         }
     
-        if(!server.dispatcher && isNotNullOrEmpty(songArguments)){
+        if(!server.dispatcher && songArguments != ''){
             server.dispatcher = connection.playStream(YTDL(server.queue[0], {
                 filter: "audioonly", 
                 quality: "lowestaudio"
@@ -32,7 +33,7 @@ module.exports = {
                 server.dispatcher = null;
                 if(server.queue[0]){
                     
-                    this.play(connection, message, null);
+                    module.exports.play(connection, message, null);
                 }
             });
         }
