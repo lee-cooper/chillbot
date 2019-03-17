@@ -1,5 +1,5 @@
 const Discord = require('discord.js-commando');
-const Servers = require('./admin.js');
+const Servers = require('./admin.json');
 
 class QueueDisplayCommand extends Discord.Command{
     constructor(client){
@@ -13,7 +13,7 @@ class QueueDisplayCommand extends Discord.Command{
 
     async run(message){
 
-        let server = Servers[message.guild.id];
+        let server = Servers.servers[message.guild.id];
 
         var songQueue = '';
         
@@ -24,9 +24,10 @@ class QueueDisplayCommand extends Discord.Command{
         if(songQueue == ''){
             message.reply('There are no songs in the playlist, igloo');
         }
-        
-        // TODO: fix to display urls rather than title names
-        message.reply('Here\'s the current playlist, ice-cube' + songQueue); 
+        else{
+            // TODO: fix to display urls rather than title names
+            message.reply('Here\'s the current playlist, ice-cube' + songQueue); 
+        }
     }
 }
 

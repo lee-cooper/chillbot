@@ -1,5 +1,5 @@
 const Discord = require('discord.js-commando');
-const Servers = require('./admin.js');
+const Servers = require('./admin.json');
 
 class UnpauseSongCommand extends Discord.Command{
     constructor(client){

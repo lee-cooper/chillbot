@@ -1,16 +1,16 @@
-const Servers = require('./admin.js');
+const Servers = require('./admin.json');
 const YTDL = require('ytdl-core');
 
 module.exports = {
     play: function(connection, message, songArguments){
 
-        if(!Servers[message.guild.id]){
-            Servers[message.guild.id] = {
+        if(!Servers.servers[message.guild.id]){
+            Servers.servers[message.guild.id] = {
                 queue: []
             };
         }
 
-        let server = Servers[message.guild.id];
+        let server = Servers.servers[message.guild.id];
     
         if(isNotNullOrEmpty(songArguments)){
             server.queue.push(songArguments);
@@ -23,7 +23,7 @@ module.exports = {
                 quality: "lowestaudio"
             }));
     
-            server.dispatcher.setVolume(0.1);
+            server.dispatcher.setVolume(Servers.volume);
         
             server.queue.shift();
         
@@ -42,12 +42,9 @@ module.exports = {
         else if(server.dispatcher && songArguments == '' && server.queue[0]){
             message.reply('Brrr! There\'s no ice cubes in the music queue!');
         }
-        else if(server.dispatcher && isNotNullOrEmpty(songArguments)){
-            
+        else{
+            message.reply('I\'m just a snowman, maaan. I don\'t know what just happened. Talk to the boss.');
         }
-        // else{
-        //     message.reply('I\'m just a snowman, maaan. I don\'t know what just happened.');
-        // }
     }
 };
 
