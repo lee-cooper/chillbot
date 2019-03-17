@@ -42,6 +42,9 @@ module.exports = {
         else if(server.dispatcher && songArguments == '' && server.queue[0]){
             message.reply('Brrr! There\'s no ice cubes in the music queue!');
         }
+        else if(server.dispatcher && songArguments != ''){
+            
+        }
         else{
             message.reply('I\'m just a snowman, maaan. I don\'t know what just happened. Talk to the boss.');
         }
