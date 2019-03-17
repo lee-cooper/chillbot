@@ -1,5 +1,5 @@
 const Discord = require('discord.js-commando');
-const Servers = require('./admin.json');
+const Global = require('./admin.json');
 
 class SkipSongCommand extends Discord.Command{
     constructor(client){
@@ -13,7 +13,7 @@ class SkipSongCommand extends Discord.Command{
 
     async run(message){
 
-        let server = Servers.servers[message.guild.id];
+        let server = Global.servers[message.guild.id];
         
         if(!server){
             message.reply('The music hasn\'t started yet, carrot.')

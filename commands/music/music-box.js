@@ -1,16 +1,16 @@
-const Servers = require('./admin.json');
+const Global = require('./admin.json');
 const YTDL = require('ytdl-core');
 
 module.exports = {
     play: function(connection, message, songArguments){
 
-        if(!Servers.servers[message.guild.id]){
-            Servers.servers[message.guild.id] = {
+        if(!Global.servers[message.guild.id]){
+            Global.servers[message.guild.id] = {
                 queue: []
             };
         }
 
-        let server = Servers.servers[message.guild.id];
+        let server = Global.servers[message.guild.id];
     
         if(isNotNullOrEmpty(songArguments)){
             server.queue.push(songArguments);
@@ -23,7 +23,7 @@ module.exports = {
                 quality: "lowestaudio"
             }));
     
-            server.dispatcher.setVolume(Servers.volume);
+            server.dispatcher.setVolume(Global.volume);
         
             server.queue.shift();
         

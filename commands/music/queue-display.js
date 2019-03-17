@@ -1,5 +1,5 @@
 const Discord = require('discord.js-commando');
-const Servers = require('./admin.json');
+const Global = require('./admin.json');
 
 class QueueDisplayCommand extends Discord.Command{
     constructor(client){
@@ -13,7 +13,7 @@ class QueueDisplayCommand extends Discord.Command{
 
     async run(message){
 
-        let server = Servers.servers[message.guild.id];
+        let server = Global.servers[message.guild.id];
 
         var songQueue = '';
         

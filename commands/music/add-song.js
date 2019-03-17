@@ -1,5 +1,5 @@
 const Discord = require('discord.js-commando');
-const Servers = require('./admin.json');
+const Global = require('./admin.json');
 
 class AddSongCommand extends Discord.Command{
     constructor(client){
@@ -17,13 +17,13 @@ class AddSongCommand extends Discord.Command{
 
             if(message.guild.voiceConnection){
 
-                if(!Servers[message.guild.id]){
-                    Servers[message.guild.id] = {
+                if(!Global.servers[message.guild.id]){
+                    Global.servers[message.guild.id] = {
                         queue: []
                     };
                 }
         
-                let server = Servers[message.guild.id];
+                let server = Global.servers[message.guild.id];
                 
                 if(args != null && args != undefined && args != ''){
                     server.queue.push(args);
